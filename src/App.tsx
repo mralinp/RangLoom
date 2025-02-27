@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { PrimeReactProvider } from "primereact/api";
+import { useState, useEffect } from "react";
+import { SplashScreen } from "./components/SplashScreen";
+import { MainLayout } from "./layouts/main.layout";
+import { HomePage } from "./pages/home.page";
+import { PalettesPage } from "./pages/palettes.page";
+import { HistoryPage } from "./pages/history.page";
+import { SettingsPage } from "./pages/settings.page";
+import { Capacitor } from "@capacitor/core";
 
-function App() {
-  const [count, setCount] = useState(0)
+type Page = "home" | "palettes" | "history" | "settings";
+
+export default function MyApp() {
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState<Page>("home");
+
+  useEffect(() => {
+    // Check if running on a mobile device
+    if (Capacitor.isNativePlatform()) {
+      // Additional mobile-specific logic can go here
+    }
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <SplashScreen />;
+  }
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":
+        return <HomePage />;
+      case "palettes":
+        return <PalettesPage />;
+      case "history":
+        return <HistoryPage />;
+      case "settings":
+        return <SettingsPage />;
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <PrimeReactProvider>
+      <MainLayout onPageChange={setCurrentPage} currentPage={currentPage}>
+        {renderPage()}
+      </MainLayout>
+    </PrimeReactProvider>
+  );
 }
-
-export default App
