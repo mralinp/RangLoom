@@ -1,146 +1,64 @@
-# React + TypeScript + Vite
+# 🧶 RangLoom - Persian Carpet Color Mixer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RangLoom is an innovative app that helps carpet manufacturers and designers blend colors accurately. It allows users to capture an image of a carpet, select an area, and get suggestions on which base colors to mix to recreate the exact shade.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📸 **Image Capture & Upload**: Take or upload a picture of a Persian carpet.
+- 🎨 **Color Selection**: Pick a specific area to analyze its color.
+- 🏺 **Base Color Matching**: Get a breakdown of base colors needed to reproduce the target color.
+- 🔄 **Live Color Mixing Preview**: Visualize how different blends will look.
+- 💾 **Save & Share**: Store color combinations or share with others.
 
-## Expanding the ESLint configuration
+## 📱 UI/UX Design
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The app features a **modern, Persian-inspired** design with:
 
-- Configure the top-level `parserOptions` property like this:
+- Minimalist UI with warm **red, gold, and beige tones**.
+- Smooth gestures like **pinch-to-zoom** and **tap-to-select**.
+- High-contrast visuals for **accessibility**.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## 🚀 Getting Started
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
-
-# Color Blender Application
-
-The Color Blender Application is designed to assist carpet manufacturers in visualizing the ratio of blending base colors to achieve a target color. This tool simplifies the process of color blending, allowing users to experiment with different combinations and see the results in real-time.
-
-## Getting Started
-
-To get started with the Color Blender Application, follow these steps:
-
-### Prerequisites
-
-Make sure you have the following installed on your machine:
-
-- Node.js (version 14 or higher)
-- npm (Node package manager)
-
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/color-blender.git
-   cd color-blender
-   ```
-
-2. Install the dependencies:
-
-   ```bash
-   npm install
-   ```
-
-### Running the Application
-
-To run the application in development mode with hot module replacement (HMR), use the following command:
+### 1️⃣ Clone the Repository
 
 ```bash
-npm run dev
+git clone https://github.com/mralinp/rangloom.git
+cd RangLoom
 ```
 
-This will start the development server, and you can view the application in your browser at `http://localhost:3000`.
+### 2️⃣ Install Dependencies
 
-### Building the Application
+```bash
+npm install
+```
 
-To create a production build of the application, run:
+### 3️⃣ Run the App
+
+For development mode:
+
+```bash
+npm start
+```
+
+### 4️⃣ Build for Production
 
 ```bash
 npm run build
 ```
 
-This command will generate optimized files in the `dist` directory, which can be deployed to your web server.
+#### Build for iOS
 
-## Expanding the ESLint Configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+```bash
+npx cap open ios
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### Build for Android
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+```bash
+npx cap open android
 ```
 
-## License
+## 🎨 Contribution
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+We welcome contributions! Feel free to **open an issue** or submit a **pull request**.
