@@ -45,18 +45,17 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
+  border: 1px solid #000;
 }
 
 .action-button.primary {
   background: black;
   color: white;
-  border: none;
 }
 
 .action-button.secondary {
-  background: #f1f5f9;
-  color: #64748b;
-  border: none;
+  background: #fff;
+  color: #000;
 }
 
 .action-button svg {
@@ -96,9 +95,10 @@
 }
 
 .match-card {
-  background: #f8fafc;
-  border-radius: 0.75rem;
+  background: #fff;
+  border-radius: 0.25rem;
   padding: 0.75rem;
+  border: 1px solid #000;
 }
 
 .match-image {
@@ -122,5 +122,6 @@
 .color-dot {
   width: 1.5rem;
   height: 1.5rem;
-  border-radius: 50%;
+  border-radius: 0.5rem;
+  border: 1px solid #000;
 }

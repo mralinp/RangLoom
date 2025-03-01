@@ -7,7 +7,7 @@ import {
   faBars,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate, Outlet } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./main.layout.css";
 
 export function MainLayout({

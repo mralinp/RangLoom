@@ -1,0 +1,82 @@
+.history-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  margin-bottom: 12px;
+}
+
+.sample-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sample-id {
+  font-weight: 600;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.card-content {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.image-container {
+  width: 80px;
+  height: 80px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.colors-section {
+  flex-grow: 1;
+}
+
+.color-swatches {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.style-info {
+  display: flex;
+  gap: 16px;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.recipe-mix {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 0.9em;
+}
+
+.share-icon {
+  color: #666;
+  cursor: pointer;
+}

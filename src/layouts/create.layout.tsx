@@ -25,7 +25,7 @@ const CreateLayout: React.FC<CreateLayoutProps> = ({
         <button className="nav-button" onClick={handleBack}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-        <h1>{title}</h1>
+        <h3>{title}</h3>
         <button className="nav-button">
           <FontAwesomeIcon icon={faCircleInfo} />
         </button>
