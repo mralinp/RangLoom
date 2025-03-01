@@ -1,47 +1,78 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faUpload } from "@fortawesome/free-solid-svg-icons";
-import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import { faCamera, faCloudUpload } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import carpetImage from "../assets/carpet.jpg";
+import carpetImage2 from "../assets/carpet2.jpg";
+import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import { Capacitor } from "@capacitor/core";
 
 import "./home.page.css";
 
 export function HomePage() {
   const navigate = useNavigate();
 
-  const captureImage = () => {
-    navigate("/camera"); // Navigate to camera page
+  const handleTakePhoto = async () => {
+    try {
+      if (Capacitor.isNativePlatform()) {
+        // Use Capacitor Camera on native platforms
+        const image = await Camera.getPhoto({
+          resultType: CameraResultType.DataUrl,
+          source: CameraSource.Camera,
+          quality: 90,
+        });
+        navigate("/blending", { state: { imageUrl: image.dataUrl } });
+      } else {
+        // Navigate to camera page on web platform
+        navigate("/camera");
+      }
+    } catch (error) {
+      console.error("Camera error:", error);
+    }
   };
 
-  const uploadImage = async () => {
-    const image = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Photos,
-      quality: 90,
-    });
-    console.log(image);
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        navigate("/blending", {
+          state: { imageUrl: reader.result },
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
     <div className="home-page">
-      <div className="header">
-        <h1>Find Your Perfect Color Match</h1>
+      <div className="home-header">
+        <h3>Find Your Perfect Color Match</h3>
         <p>Capture, analyze, and recreate carpet colors</p>
       </div>
 
       <div className="action-buttons">
-        <button className="action-button primary" onClick={captureImage}>
+        <button className="action-button primary" onClick={handleTakePhoto}>
           <FontAwesomeIcon icon={faCamera} /> Capture Image
         </button>
-        <button className="action-button secondary" onClick={uploadImage}>
-          <FontAwesomeIcon icon={faUpload} /> Upload Image
-        </button>
+        <label className="action-button secondary" htmlFor="image-upload">
+          <FontAwesomeIcon icon={faCloudUpload} /> Upload Image
+          <input
+            type="file"
+            id="image-upload"
+            accept="image/*"
+            onChange={handleImageUpload}
+            style={{ display: "none" }}
+          />
+        </label>
       </div>
 
       <section className="recent-matches">
-        <h2>Recent Matches</h2>
+        <h3>Recent Matches</h3>
         <div className="matches-grid">
           <div className="match-card">
-            <div className="match-image">Carpet Sample 1</div>
+            <div className="match-image">
+              <img src={carpetImage} alt="Carpet Sample 1" />
+            </div>
             <div className="color-dots">
               <span
                 className="color-dot"
@@ -58,7 +89,9 @@ export function HomePage() {
             </div>
           </div>
           <div className="match-card">
-            <div className="match-image">Carpet Sample 2</div>
+            <div className="match-image">
+              <img src={carpetImage2} alt="Carpet Sample 2" />
+            </div>
             <div className="color-dots">
               <span
                 className="color-dot"

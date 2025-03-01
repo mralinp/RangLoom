@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  padding-top: 2rem;
   background: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -29,10 +30,18 @@
   cursor: pointer;
 }
 
+.main-layout {
+  /* Add padding for the iPhone notch/safe area */
+  padding-top: env(safe-area-inset-top, 47px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .main-content {
   flex: 1;
+  width: 100%;
   overflow-y: auto;
-  padding: 1rem;
 }
 
 .bottom-nav {

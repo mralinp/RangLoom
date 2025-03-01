@@ -1,18 +1,18 @@
 import { PrimeReactProvider } from "primereact/api";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SplashScreen } from "./components/SplashScreen";
 import { MainLayout } from "./layouts/main.layout";
 import { HomePage } from "./pages/home.page";
 import { PalettesPage } from "./pages/palettes.page";
 import { HistoryPage } from "./pages/history.page";
 import { SettingsPage } from "./pages/settings.page";
+import { CameraPage } from "./pages/camera.page";
 import { Capacitor } from "@capacitor/core";
-
-type Page = "home" | "palettes" | "history" | "settings";
+import { BlendingPage } from "./pages/blending.page";
 
 export default function MyApp() {
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<Page>("home");
 
   useEffect(() => {
     // Check if running on a mobile device
@@ -31,24 +31,27 @@ export default function MyApp() {
     return <SplashScreen />;
   }
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":
-        return <HomePage />;
-      case "palettes":
-        return <PalettesPage />;
-      case "history":
-        return <HistoryPage />;
-      case "settings":
-        return <SettingsPage />;
-    }
-  };
-
   return (
     <PrimeReactProvider>
-      <MainLayout onPageChange={setCurrentPage} currentPage={currentPage}>
-        {renderPage()}
-      </MainLayout>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/camera" element={<CameraPage />} />
+          <Route path="/blending" element={<BlendingPage />} />
+          <Route
+            path="*"
+            element={
+              <MainLayout>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/palettes" element={<PalettesPage />} />
+                  <Route path="/history" element={<HistoryPage />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                </Routes>
+              </MainLayout>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </PrimeReactProvider>
   );
 }

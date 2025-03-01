@@ -8,20 +8,13 @@ import {
   faBars,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./main.layout.css";
 
-type Page = "home" | "palettes" | "history" | "settings";
+export function MainLayout({ children }: PropsWithChildren) {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-interface MainLayoutProps extends PropsWithChildren {
-  currentPage: Page;
-  onPageChange: (page: Page) => void;
-}
-
-export function MainLayout({
-  children,
-  currentPage,
-  onPageChange,
-}: MainLayoutProps) {
   return (
     <div className="layout">
       {/* Top Navigation Bar */}
@@ -41,29 +34,35 @@ export function MainLayout({
       {/* Bottom Menu Bar */}
       <nav className="bottom-nav">
         <button
-          className={`nav-button ${currentPage === "home" ? "active" : ""}`}
-          onClick={() => onPageChange("home")}
+          className={`nav-button ${location.pathname === "/" ? "active" : ""}`}
+          onClick={() => navigate("/")}
         >
           <FontAwesomeIcon icon={faHome} />
           <span>Home</span>
         </button>
         <button
-          className={`nav-button ${currentPage === "palettes" ? "active" : ""}`}
-          onClick={() => onPageChange("palettes")}
+          className={`nav-button ${
+            location.pathname === "/palettes" ? "active" : ""
+          }`}
+          onClick={() => navigate("/palettes")}
         >
           <FontAwesomeIcon icon={faPalette} />
           <span>Palettes</span>
         </button>
         <button
-          className={`nav-button ${currentPage === "history" ? "active" : ""}`}
-          onClick={() => onPageChange("history")}
+          className={`nav-button ${
+            location.pathname === "/history" ? "active" : ""
+          }`}
+          onClick={() => navigate("/history")}
         >
           <FontAwesomeIcon icon={faHistory} />
           <span>History</span>
         </button>
         <button
-          className={`nav-button ${currentPage === "settings" ? "active" : ""}`}
-          onClick={() => onPageChange("settings")}
+          className={`nav-button ${
+            location.pathname === "/settings" ? "active" : ""
+          }`}
+          onClick={() => navigate("/settings")}
         >
           <FontAwesomeIcon icon={faCog} />
           <span>Settings</span>
