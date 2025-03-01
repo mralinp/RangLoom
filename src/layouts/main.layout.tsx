@@ -1,4 +1,3 @@
-import { type PropsWithChildren } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -8,10 +7,16 @@ import {
   faBars,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import "./main.layout.css";
 
-export function MainLayout({ children }: PropsWithChildren) {
+export function MainLayout({
+  title,
+  children,
+}: {
+  title?: string;
+  children: React.ReactNode;
+}) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,7 +27,7 @@ export function MainLayout({ children }: PropsWithChildren) {
         <button className="menu-button">
           <FontAwesomeIcon icon={faBars} />
         </button>
-        <h1 className="nav-title">Rang Loom</h1>
+        <h1 className="nav-title">{title || "Main Layout"}</h1>
         <button className="menu-button">
           <FontAwesomeIcon icon={faUser} />
         </button>

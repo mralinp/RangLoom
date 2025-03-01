@@ -1,0 +1,95 @@
+.palette-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  border: 1px solid #000;
+}
+
+.palette-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.palette-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.like-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.likes-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #ddd;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.like-button.active {
+  color: #ff4757;
+}
+
+.color-samples {
+  display: flex;
+  align-items: center;
+}
+
+.color-square {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  border: 1px solid #000;
+}
+
+.color-square.more-colors {
+  background-color: #f1f2f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 1.5rem;
+}
+
+.color-square:last-child {
+  margin-right: 0;
+}
+
+.palette-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.share-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #666;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}

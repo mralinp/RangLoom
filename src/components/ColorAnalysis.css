@@ -1,0 +1,77 @@
+.color-analysis {
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-analysis:hover {
+  background: #e2e8f0;
+}
+
+.color-analysis.active {
+  background: #e2e8f0;
+  border: 2px solid #1a1f2c;
+}
+
+.color-analysis + .color-analysis {
+  margin-top: 0;
+}
+
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.analysis-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.color-hex {
+  font-family: monospace;
+  color: #1a1f2c;
+}
+
+.color-composition {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.selected-area-preview {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.selected-area-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.selected-color-square {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+}
+
+.composition-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.composition-row {
+  display: flex;
+  justify-content: space-between;
+  color: #1a1f2c;
+}

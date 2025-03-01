@@ -40,7 +40,7 @@
 }
 
 .image-preview {
-  height: 40vh;
+  height: 30vh;
   background: #e2e8f0;
   display: flex;
   align-items: center;
@@ -83,15 +83,16 @@
 
 .selection-box {
   position: absolute;
-  z-index: 2;
-  width: 120px;
-  height: 120px;
+  width: 48px;
+  height: 48px;
   border: 2px solid white;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
   pointer-events: none;
+  z-index: 10;
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .preview-text {
@@ -192,6 +193,22 @@
   background: #f1f5f9;
   padding: 1rem;
   border-radius: 0.75rem;
+  margin: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-analysis:hover {
+  background: #e2e8f0;
+}
+
+.color-analysis.active {
+  background: #e2e8f0;
+  border: 2px solid #1a1f2c;
+}
+
+.color-analysis + .color-analysis {
+  margin-top: 0;
 }
 
 .analysis-header {
@@ -303,15 +320,10 @@
   justify-content: center;
   cursor: pointer;
   color: #64748b;
-  transition: background-color 0.2s;
 }
 
 .zoom-button:hover {
-  background-color: #f8fafc;
-}
-
-.zoom-button:active {
-  background-color: #f1f5f9;
+  background: #f1f5f9;
 }
 
 .more-colors {
@@ -325,11 +337,23 @@
 }
 
 .selected-area-preview {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 0.5rem;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
-  overflow: hidden;
+}
+
+.selected-area-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.selected-area-preview .placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: #f1f5f9;
 }
 
 .preview-crop {
@@ -398,21 +422,6 @@
   flex: 1;
 }
 
-.palette-card {
-  padding: 1rem;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.palette-card:hover {
-  background-color: #f1f5f9;
-}
-
-.palette-card.selected {
-  background-color: #e2e8f0;
-}
-
 .palette-preview {
   display: flex;
   flex-wrap: wrap;
@@ -431,7 +440,19 @@
   color: #64748b;
 }
 
-.palette-card.selected .palette-name {
-  color: #1a1f2c;
-  font-weight: 500;
+.canvas-container {
+  position: relative;
+  height: 300px;
+  background: #000;
+}
+
+.image-canvas {
+  cursor: grab;
+  touch-action: none;
+  width: 100%;
+  height: 100%;
+}
+
+.image-canvas:active {
+  cursor: grabbing;
 }

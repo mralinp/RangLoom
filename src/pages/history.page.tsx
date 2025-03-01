@@ -1,3 +1,4 @@
+import { MainLayout } from "../layouts/main.layout";
 import "./history.page.css";
 
 interface ColorRecipe {
@@ -34,40 +35,42 @@ const mockRecipes: ColorRecipe[] = [
 
 export function HistoryPage() {
   return (
-    <div className="history-page">
-      <div className="recipes-list">
-        {mockRecipes.map((recipe) => (
-          <div key={recipe.id} className="recipe-card">
-            <div className="recipe-header">
-              <div className="target-color">
-                <div
-                  className="color-preview"
-                  style={{ backgroundColor: recipe.targetColor }}
-                />
-                <span className="color-code">{recipe.targetColor}</span>
-              </div>
-              <span className="recipe-date">
-                {new Date(recipe.date).toLocaleDateString()}
-              </span>
-            </div>
-
-            <div className="recipe-ingredients">
-              {recipe.ingredients.map((ingredient, index) => (
-                <div key={index} className="ingredient">
+    <MainLayout title="History">
+      <div className="history-page">
+        <div className="recipes-list">
+          {mockRecipes.map((recipe) => (
+            <div key={recipe.id} className="recipe-card">
+              <div className="recipe-header">
+                <div className="target-color">
                   <div
-                    className="ingredient-color"
-                    style={{ backgroundColor: ingredient.color }}
+                    className="color-preview"
+                    style={{ backgroundColor: recipe.targetColor }}
                   />
-                  <span className="ingredient-code">{ingredient.color}</span>
-                  <span className="ingredient-percentage">
-                    {ingredient.percentage}%
-                  </span>
+                  <span className="color-code">{recipe.targetColor}</span>
                 </div>
-              ))}
+                <span className="recipe-date">
+                  {new Date(recipe.date).toLocaleDateString()}
+                </span>
+              </div>
+
+              <div className="recipe-ingredients">
+                {recipe.ingredients.map((ingredient, index) => (
+                  <div key={index} className="ingredient">
+                    <div
+                      className="ingredient-color"
+                      style={{ backgroundColor: ingredient.color }}
+                    />
+                    <span className="ingredient-code">{ingredient.color}</span>
+                    <span className="ingredient-percentage">
+                      {ingredient.percentage}%
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }

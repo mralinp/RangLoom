@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./palettes.page.css";
 import { useState } from "react";
+import { PaletteCard } from "../components/PaletteCard";
+import { MainLayout } from "../layouts/main.layout";
 
 type PaletteType = "All Palettes" | "Traditional" | "Modern" | "Custom";
 
@@ -11,6 +13,7 @@ interface Palette {
   type: Exclude<PaletteType, "All Palettes">;
   colors: string[];
   isLiked: boolean;
+  likes: number;
 }
 
 const INITIAL_PALETTES: Palette[] = [
@@ -18,22 +21,73 @@ const INITIAL_PALETTES: Palette[] = [
     id: "1",
     name: "Traditional Persian",
     type: "Traditional",
-    colors: ["#1a1f2c", "#2f3542", "#57606f", "#a4b0be"],
+    colors: ["#2c3e50", "#e74c3c", "#ecf0f1", "#3498db", "#2980b9"],
     isLiked: false,
+    likes: 124,
   },
   {
     id: "2",
     name: "Modern Blend",
     type: "Modern",
-    colors: ["#1a1f2c", "#2f3542", "#57606f", "#a4b0be", "#dfe4ea"],
+    colors: ["#2d3436", "#636e72", "#b2bec3", "#dfe6e9"],
     isLiked: true,
+    likes: 89,
   },
   {
     id: "3",
-    name: "Custom Mix",
-    type: "Custom",
-    colors: ["#1a1f2c", "#57606f", "#a4b0be"],
+    name: "Desert Sunset",
+    type: "Traditional",
+    colors: ["#ff9f43", "#ee5253", "#ff6b6b", "#feca57"],
     isLiked: false,
+    likes: 245,
+  },
+  {
+    id: "4",
+    name: "Ocean Breeze",
+    type: "Modern",
+    colors: ["#00cec9", "#81ecec", "#00b894", "#55efc4", "#2980b9"],
+    isLiked: true,
+    likes: 167,
+  },
+  {
+    id: "5",
+    name: "Forest Walk",
+    type: "Traditional",
+    colors: ["#6ab04c", "#badc58", "#ff7979", "#eb4d4b"],
+    isLiked: false,
+    likes: 92,
+  },
+  {
+    id: "6",
+    name: "Urban Night",
+    type: "Modern",
+    colors: ["#2f3640", "#353b48", "#718093", "#7f8fa6", "#dcdde1"],
+    isLiked: false,
+    likes: 188,
+  },
+  {
+    id: "7",
+    name: "Cherry Blossom",
+    type: "Traditional",
+    colors: ["#f8a5c2", "#f78fb3", "#574b90", "#303952"],
+    isLiked: true,
+    likes: 276,
+  },
+  {
+    id: "8",
+    name: "Custom Neon",
+    type: "Custom",
+    colors: ["#18dcff", "#32ff7e", "#ff4d4d", "#7d5fff", "#ffaf40"],
+    isLiked: false,
+    likes: 143,
+  },
+  {
+    id: "9",
+    name: "Minimal Gray",
+    type: "Modern",
+    colors: ["#d2dae2", "#808e9b", "#485460", "#1e272e"],
+    isLiked: false,
+    likes: 156,
   },
 ];
 
@@ -68,62 +122,47 @@ export function PalettesPage() {
   });
 
   return (
-    <div className="palettes-page">
-      <div className="top-section">
-        <div className="search-container">
-          <FontAwesomeIcon icon={faSearch} className="search-icon" />
-          <input
-            type="text"
-            placeholder="Search palettes"
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+    <MainLayout title="Palettes">
+      <div className="palettes-page">
+        <div className="top-section">
+          <div className="search-container">
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search palettes"
+              className="search-input"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="filter-tabs">
+          {["All Palettes", "Traditional", "Modern", "Custom"].map((type) => (
+            <button
+              key={type}
+              className={`filter-tab ${selectedType === type ? "active" : ""}`}
+              onClick={() => handleFilterClick(type as PaletteType)}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+
+        <div className="palettes-list">
+          {filteredPalettes.map((palette) => (
+            <PaletteCard
+              key={palette.id}
+              id={palette.id}
+              name={palette.name}
+              colors={palette.colors}
+              likes={palette.likes}
+              isLiked={palette.isLiked}
+              onLikeToggle={handleLikeToggle}
+            />
+          ))}
         </div>
       </div>
-
-      <div className="filter-tabs">
-        {["All Palettes", "Traditional", "Modern", "Custom"].map((type) => (
-          <button
-            key={type}
-            className={`filter-tab ${selectedType === type ? "active" : ""}`}
-            onClick={() => handleFilterClick(type as PaletteType)}
-          >
-            {type}
-          </button>
-        ))}
-      </div>
-
-      <div className="palettes-list">
-        {filteredPalettes.map((palette) => (
-          <div key={palette.id} className="palette-card">
-            <div className="palette-header">
-              <h3>{palette.name}</h3>
-              <button
-                className={`like-button ${palette.isLiked ? "active" : ""}`}
-                onClick={() => handleLikeToggle(palette.id)}
-              >
-                <FontAwesomeIcon icon={faHeart} />
-              </button>
-            </div>
-            <div className="color-squares">
-              {palette.colors.map((color, index) => (
-                <div
-                  key={index}
-                  className="color-square"
-                  style={{ background: color }}
-                />
-              ))}
-            </div>
-            <div className="palette-footer">
-              <span>{palette.colors.length} colors</span>
-              <button className="share-button">
-                <FontAwesomeIcon icon={faShare} />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    </MainLayout>
   );
 }

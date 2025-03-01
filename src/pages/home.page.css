@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #f8fafc;
   padding: 1rem;
 }
 
@@ -23,7 +22,6 @@
   background: none;
   border: none;
   font-size: 1.25rem;
-  color: #0f172a;
   padding: 0.5rem;
   cursor: pointer;
 }
@@ -50,7 +48,7 @@
 }
 
 .action-button.primary {
-  background: #111827;
+  background: black;
   color: white;
   border: none;
 }
@@ -72,8 +70,6 @@
   gap: 8px;
   width: 100%;
   padding: 16px;
-  background: #111827;
-  color: white;
   border: none;
   border-radius: 16px;
   font-size: 16px;
@@ -106,7 +102,6 @@
 }
 
 .match-image {
-  background: #e2e8f0;
   border-radius: 0.5rem;
   height: 120px;
   overflow: hidden;

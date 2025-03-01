@@ -1,0 +1,107 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.auth-content {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-header {
+  margin-bottom: 48px;
+}
+
+.auth-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.auth-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-buttons .p-button {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.email-button {
+  background-color: #1a1a1a !important;
+  color: white !important;
+  border: none !important;
+}
+
+.google-button {
+  background-color: white !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #1a1a1a !important;
+}
+
+.guest-button {
+  color: #666 !important;
+  text-decoration: underline !important;
+  background: transparent !important;
+  border: none !important;
+  margin-top: 8px !important;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+  color: #666;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.divider span {
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.auth-footer {
+  margin-top: 48px;
+  color: #666;
+  font-size: 14px;
+}
+
+.auth-links {
+  margin-top: 4px;
+}
+
+.auth-links a {
+  color: #666;
+  text-decoration: underline;
+}
+
+.logo {
+  margin-bottom: 24px;
+}
